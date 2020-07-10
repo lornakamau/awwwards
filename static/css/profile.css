@@ -52,7 +52,7 @@ main {
     background: var(--primaryShade5);
 }
 .profile-smallimg {
-    width: 300px;
+    /* width: 300px; */
     border-radius: 10px;
     text-align: center;
     display: grid;
