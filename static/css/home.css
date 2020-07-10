@@ -59,11 +59,15 @@
   display: flex;
   flex-direction: row;
 }
-.bt-item.bt-link {
+.visit {
     width: 35px;
     height: 35px;
     border: 1px solid rgba(255,255,255,0.5);
     border-radius: 50%;
+}
+.visit img{
+    width: 100%;
+    object-fit: cover;
 }
 .ico-svg {
     position: relative;
@@ -112,6 +116,9 @@
   font-size: 14px;
   color: #888;
 } */
+.of-the-day > .info > .content{
+    position: relative;
+}
 
 .of-the-day > .info > .content strong { font-weight: normal; color: #333 }
 .of-the-day > .info > .content .pad-right { padding-right: 20px }

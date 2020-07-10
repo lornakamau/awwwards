@@ -1,5 +1,11 @@
 .of-the-day-wrapper {
     position: relative;
+    margin-bottom: 10rem;
+}
+
+.col-md-8 {
+    padding-right: 5rem;
+    padding-left: 5rem;
 }
 
 .of-the-day {
@@ -7,41 +13,62 @@
     border-radius: 2px;
     box-shadow: 0 2px 15px rgba(0, 0, 0, .5);
 }
-.of-the-day > .cover
-{
-  position: relative;
-  height: 35rem;
-  border-radius: 2px 2px 0 0;
-}
-.of-the-day > .cover > img
-{
-  width: 100%;
-  object-fit: cover;
-}
-.of-the-day > .cover > label
-{
-  position: absolute;
-  top: 2.2rem;
-  left: -3.3rem;
-  height: 3.3rem;
-  padding: 0 3rem 0 4rem;
-  line-height: 3.3rem;
-  vertical-align: middle;
-  font-size: 1.2rem;
-  color: #FFF;
-  text-shadow: 0 1px 2px #000;
-  background: rgba(136, 86, 168, .6);
+
+.of-the-day>.cover {
+    position: relative;
+    border-radius: 2px 2px 0 0;
 }
 
-.of-the-day > .cover > label > p> span
-{
-  font-size: 1.4rem;
-  text-transform: uppercase;
+.of-the-day>.cover>img {
+    width: 100%;
+    height: 40rem;
+    object-fit: cover;
 }
-.of-the-day > .info
-{
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  overflow: hidden;
+
+.of-the-day>.cover>label {
+    position: absolute;
+    top: 2.2rem;
+    left: -3.3rem;
+    height: 3.3rem;
+    padding: 0 3rem 0 4rem;
+    line-height: 3.3rem;
+    vertical-align: middle;
+    font-size: 1.2rem;
+    color: #FFF;
+    text-shadow: 0 1px 2px #000;
+    background: rgba(136, 86, 168, .6);
 }
+
+.of-the-day>.cover>label>p>span {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+
+.of-the-day>.info {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+.of-the-day>.info a img {
+    width: 8rem;
+    object-fit: cover;
+    padding: 10%;
+}
+
+.voters img {
+    display: inline-block;
+    width: 4rem;
+    height: 4rem;
+    margin: 0 2px 0 0;
+    /* line-height: 32px; */
+    vertical-align: middle;
+    border-radius: 100%
+}
+
+.voters span {
+    margin: 0
+}
+
+/* SUBMISSIONS */
