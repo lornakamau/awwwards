@@ -12,6 +12,15 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+    def save_profile(self):
+        self.save()
+
+    def delete_profile(self):
+        self.delete() 
+
+    def edit_bio(self, new_bio):
+        self.bio = new_bio
+        self.save()
 
 class Project(models.Model):
     name = models.CharField(max_length = 30)
