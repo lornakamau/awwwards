@@ -28,3 +28,28 @@ class Project(models.Model):
     average_usability = models.FloatField(default=0)
     average_content = models.FloatField(default=0)
     average_score = models.FloatField(default=0)
+
+    def __str__(self):
+        return self.name
+
+    def save_project(self):
+        self.save()
+
+    def delete_project(self):
+        self.delete()
+
+    def voters_count(self):
+        return self.voters.count()
+
+    @classmethod
+    def display_all_projects(cls):
+        return cls.objects.all()
+
+    @classmethod 
+    def search_project(cls,name):
+        return Project.objects.filter(name__icontains = name)
+
+    @classmethod
+    def get_user_projects(cls,profile):
+        return cls.objects.filter(profile=profile)
+    
