@@ -28,7 +28,6 @@ def email(request):
     send_signup_email(name, email)
     return redirect(create_profile)
     
-@login_required(login_url='/accounts/login/')
 def home(request):
     title= "aWWWards"
     date = dt.date.today()
@@ -37,12 +36,31 @@ def home(request):
     highest_score = projects_scores[0]
     return render(request, "home.html", {"date": date, "title": title, "projects": projects, "highest":highest_score})
 
-def profile(request):
-    return render(request, "user/profile.html")
+@login_required(login_url='/accounts/login/')
+def profile(request, profile_id):
+    title = "aWWWards"
+    try:
+        profile = Profile.objects.get(id =profile_id)
+        title = profile.user.username
+        projects = Project.get_user_projects(profile.id)
+        projects_count = projects.count()
+        votes= []
+        for project in projects:
+            votes.append(project.average_score)
+        total_votes = sum(votes)
+        average = total_votes / len(projects)
+    except Profile.DoesNotExist:
+        raise Http404()        
+    return render(request, "user/profile.html", {"profile": profile, "projects": projects, "count": projects_count, "votes": total_votes, "average": average})
 
+@login_required(login_url='/accounts/login/')
 def project(request, project_id):
     form = RateProjectForm()
-    return render(request, 'project/project.html', {"form": form})
+    project = Project.objects.get(pk=project_id)
+    voted = False
+    if project.voters.filter(id=request.user.id).exists():
+        voted = True 
+    return render(request, 'project/project.html', {"form": form, "project": project})
 
 @login_required(login_url='/accounts/login/')
 def add_project(request):

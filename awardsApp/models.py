@@ -62,4 +62,7 @@ class Project(models.Model):
     @classmethod
     def get_user_projects(cls,profile):
         return cls.objects.filter(profile=profile)
+
+    class Meta:
+        ordering = ['-post_date']
     
