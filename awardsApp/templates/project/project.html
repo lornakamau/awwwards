@@ -17,20 +17,19 @@
 {% endif %}
 
 <div class="details text-center">
-    <div class="title">Hellboy - Join the B.P.R.D</div>
-    <div class="description">Join Hellboy at the B.P.R.D.! In this mobile exclusive experience, browse the agency’s
-        secret archives and apply for an internship with Hellboy himself. Do you have what it takes?</div>
+    <div class="title">{{project.name}}</div>
+    <div class="description">{{project.description}}</div>
     <div class="badges text-center">
         <label>
-            53 <span>awards</span>
+            {{votes}} <span>votes</span>
         </label>
         <label>
-            69 <span>projects</span>
+            {{project.average_score | floatformat:2}} <span>score</span>
         </label>
     </div>
     <div class="tabs">
         <div class="tablinks" onclick="openTab(event, 'Votes')" id="defaultOpen">Votes</div>
-        <div class="tablinks" onclick="openTab(event, 'Rate')">London</div>
+        <div class="tablinks" onclick="openTab(event, 'Rate')">Rate project</div>
         <div class="tablinks">Paris</div>
     </div>
     <hr>
@@ -43,9 +42,7 @@
             <div class="text-center">
                 <div class="title">Rate project</div>
                 <hr>
-                <div class="guide">Add a project by providing the project name, project screenshot, a short description
-                    of the
-                    project and finally a live link to the site.</div>
+                <div class="guide">Rate the project based on usability, content and design</div>
             </div>
             <form action="{%url 'rate_project' 1%}" method="post">
                 {%csrf_token%}

@@ -16,7 +16,10 @@
         <div class="email"><span><i class="fas fa-at"></i></span>&nbsp;&nbsp;kamaulorna@gmail.com</div>
     </div>
     <div class="profile-right">
-        <label><span>{{average | floatformat:0}}</span> average score</label>
+		{%if average == 0%}
+		{%else%}
+		<label><span>{{average | floatformat:0}}</span> average score</label>
+		{% endif %}
     </div>
 </div>
 <hr>
