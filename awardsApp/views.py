@@ -41,6 +41,7 @@ def home(request):
     projects = Project.display_all_projects()
     projects_scores = projects.order_by('-average_score')
     highest_score = None
+    highest_votes = None
     if len(projects) >= 1:
         highest_score = projects_scores[0]
         votes = Vote.get_project_votes(highest_score.id)
@@ -94,11 +95,6 @@ def project(request, project_id):
         voted = True
     else:
         voted = False
-    print("IDS")
-    print(request.user.id)
-    print(voters_list[0])
-    print(voters_list[1])
-    print(project.profile.id)
     average_score = sum(average_list) / len(average_list)
     average_design = sum(design_list) / total_votes
     average_content = sum(content_list) / total_votes

@@ -1,12 +1,12 @@
 [![codebeat badge](https://codebeat.co/badges/0640056a-a666-462c-8032-13b2766004d6)](https://codebeat.co/projects/github-com-lornakamau-awwwards-master)
 # Instagram
-#### Awwwards - an application rating platform  , 14/07/2020.
+#### Awwwards - an application rating platform for software developers , 14/07/2020.
 #### By Lorna Kamau
 <img src="./static/images/landing.png"
      alt="landing"
      style="width=100%;" />
 ## Description
-Awwwards is a platform that allows users to submit their projects/applications to be rated based on design, usability and content.
+Awwwards is a platform that allows developers to submit their projects/applications to be rated based on design, usability and content. Developers are also able to see other developers' profile and projects. Each day, the project with the highest average score is featured on the landing page.
 
 ## Live link
 Visit the application on https://lorna-awwwards.herokuapp.com/ .
