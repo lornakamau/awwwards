@@ -169,6 +169,7 @@ label>span {
 .submissions-wrapper {
     padding-left: 5%;
     padding-right: 5%;
+    display: flex;
 }
 a {
     text-decoration: none;
