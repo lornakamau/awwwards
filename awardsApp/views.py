@@ -77,6 +77,7 @@ def project(request, project_id):
     title = project.name.title()
     votes = Vote.get_project_votes(project.id)
     total_votes = votes.count()
+    voted = False
     
     voters_list =[]
     average_list = []
@@ -92,15 +93,15 @@ def project(request, project_id):
         design_list.append(vote.design)
         usability_list.append(vote.usability)
 
-    try:
-        user = User.objects.get(pk = request.user.id)
-        profile = Profile.objects.get(user = user)
-        voter = Vote.get_project_voters(profile)
-        voted = False
-        if len(voter) > 1 or request.user.id == project.profile.id:
-            voted = True
-    except Profile.DoesNotExist:
-        voted = False    
+        try:
+            user = User.objects.get(pk = request.user.id)
+            profile = Profile.objects.get(user = user)
+            voter = Vote.get_project_voters(profile)
+            voted = False
+            if request.user.id in voters_list or request.user.id == project.profile.id:
+                voted = True
+        except Profile.DoesNotExist:
+            voted = False    
 
     average_score = 0
     average_design = 0
