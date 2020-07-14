@@ -10,13 +10,15 @@
 <div class="image">
     <img src="{{project.screenshot.url}}" alt="...">
 </div>
+{% if project.profile.user.id == request.user.id %}
+{% else %}
 {% if voted %}
 {% else %}
 <a href="#rate-form" onclick="openTab(event, 'Rate')">
     <div class="vote text-center">Rate project now</div>
 </a>
 {% endif %}
-
+{% endif %}
 <div class="details text-center">
     <div class="title"><a href="{{project.link}}" target="_blank">{{project.name}}&nbsp;<sup><i class="fas fa-share" style="font-size: 1.9rem;"></i></sup></a></div>
     <div class="owner">BY <span><a href="{% url 'profile' project.profile.user.id %}">{{project.profile.user.username}}</a></span> FROM {{project.profile.location}}</div>
@@ -55,6 +57,9 @@
         {% endif %}
     </div>
     <div id="Rate" class="tabcontent">
+        {% if project.profile.user.id == request.user.id %}
+        <div class="text-center have-already">Sorry, you cannot rate this project</div>
+        {% else %}
         {% if voted %}
         <div class="text-center have-already">You have already rated this project</div>
         {% else %}
@@ -71,6 +76,7 @@
                 <br>
             </form>
         </div>
+        {% endif %}
         {% endif %}
     </div>
 </div>

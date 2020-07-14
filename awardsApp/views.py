@@ -74,7 +74,7 @@ def profile(request, profile_id):
 def project(request, project_id):
     form = RateProjectForm()
     project = Project.objects.get(pk=project_id)
-    title = project.name.title()
+    title = project.name.title() + " | aWWWards"
     votes = Vote.get_project_votes(project.id)
     total_votes = votes.count()
     voted = False
@@ -98,11 +98,13 @@ def project(request, project_id):
             profile = Profile.objects.get(user = user)
             voter = Vote.get_project_voters(profile)
             voted = False
-            if request.user.id in voters_list or request.user.id == project.profile.user.id:
+            if request.user.id in voters_list: 
                 voted = True
         except Profile.DoesNotExist:
             voted = False    
-
+    print("USER")
+    print(request.user.id)
+    print(project.profile.user.id)
     average_score = 0
     average_design = 0
     average_content = 0
@@ -158,8 +160,6 @@ def rate_project(request,project_id):
             vote.voter = profile
             vote.project = project
             vote.save_vote()
-            # project.voters.add(request.user.id)
-            # project.save()
             return HttpResponseRedirect(reverse('project', args =[int(project.id)]))
     else:
         form = RateProjectForm()
@@ -170,6 +170,7 @@ def search_project(request):
     if "project" in request.GET and request.GET["project"]:
         searched_project = request.GET.get("project")
         title = "aWWWards | search"
+        voted = False
         try:
             projects = Project.search_project(searched_project)
             count = projects.count()
@@ -181,14 +182,16 @@ def search_project(request):
                 votes = Vote.get_project_votes(project.id)
                 voters = project.voters
                 
-                voters_list =[]
                 for vote in votes:
-                    voters_list.append(vote.voter.id)
-                voted = True
-                if request.user.id in voters_list or request.user.id == project.profile.user.id:
-                    voted = False
-                else:
-                    voted = True
+                    try:
+                        user = User.objects.get(pk = request.user.id)
+                        profile = Profile.objects.get(user = user)
+                        voter = Vote.get_project_voters(profile)
+                        voted = False
+                        if request.user.id in voters_list: 
+                            voted = True
+                    except Profile.DoesNotExist:
+                        voted = False
                 return render(request, 'project/project.html', {"form": form, "project": project, "voted": voted, "votes": votes, "title": title})
             return render(request, 'project/search.html', {"projects": projects,"message": message, "count":count, "title": title})
         except ObjectDoesNotExist:
