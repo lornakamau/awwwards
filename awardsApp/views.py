@@ -98,7 +98,7 @@ def project(request, project_id):
             profile = Profile.objects.get(user = user)
             voter = Vote.get_project_voters(profile)
             voted = False
-            if request.user.id in voters_list or request.user.id == project.profile.id:
+            if request.user.id in voters_list or request.user.id == project.profile.user.id:
                 voted = True
         except Profile.DoesNotExist:
             voted = False    
