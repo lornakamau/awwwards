@@ -96,18 +96,23 @@ def project(request, project_id):
         voted = True
     else:
         voted = False
+
+    average_score = 0
+    average_design = 0
+    average_content = 0
+    average_usability = 0
     if len(average_list) > 0:
         average_score = sum(average_list) / len(average_list)
+        project.average_score = average_score
+        project.save()  
     if total_votes != 0:
         average_design = sum(design_list) / total_votes
         average_content = sum(content_list) / total_votes
-        average_usability = sum(usability_list) / total_votes   
-
-    project.average_score = average_score
-    project.average_design = average_design
-    project.average_content =average_content
-    project.average_usability = average_usability
-    project.save()  
+        average_usability = sum(usability_list) / total_votes 
+        project.average_design = average_design
+        project.average_content =average_content
+        project.average_usability = average_usability
+        project.save()    
 
     return render(request, 'project/project.html', {"title": title, "form": form, "project": project, "votes": votes, "voted": voted, "total_votes":total_votes})
 
