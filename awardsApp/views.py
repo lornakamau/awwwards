@@ -96,10 +96,12 @@ def project(request, project_id):
         voted = True
     else:
         voted = False
-    average_score = sum(average_list) / len(average_list)
-    average_design = sum(design_list) / total_votes
-    average_content = sum(content_list) / total_votes
-    average_usability = sum(usability_list) / total_votes   
+    if len(average_list) > 0:
+        average_score = sum(average_list) / len(average_list)
+    if total_votes != 0:
+        average_design = sum(design_list) / total_votes
+        average_content = sum(content_list) / total_votes
+        average_usability = sum(usability_list) / total_votes   
 
     project.average_score = average_score
     project.average_design = average_design
