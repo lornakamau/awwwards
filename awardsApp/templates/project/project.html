@@ -56,6 +56,8 @@
     </div>
     <div id="Rate" class="tabcontent">
         {% if voted %}
+        <div class="text-center have-already">You have already rated this project</div>
+        {% else %}
         <div id="rate-form">
             <div class="text-center">
                 <div class="title">Rate project</div>
@@ -69,9 +71,6 @@
                 <br>
             </form>
         </div>
-        {% else %}
-        <div class="text-center have-already">You have already rated this project</div>
-        
         {% endif %}
     </div>
 </div>

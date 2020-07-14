@@ -91,9 +91,16 @@ def project(request, project_id):
         content_list.append(vote.content)
         design_list.append(vote.design)
         usability_list.append(vote.usability)
-    voted = False
-    if project.voters.filter(id=request.user.id).exists() or request.user.id == project.profile.id:
-        voted = True
+
+    try:
+        user = User.objects.get(pk = request.user.id)
+        profile = Profile.objects.get(user = user)
+        voter = Vote.get_project_voters(profile)
+        voted = False
+        if len(voter) > 1 or request.user.id == project.profile.id:
+            voted = True
+    except Profile.DoesNotExist:
+        voted = False    
 
     average_score = 0
     average_design = 0
@@ -150,8 +157,8 @@ def rate_project(request,project_id):
             vote.voter = profile
             vote.project = project
             vote.save_vote()
-            project.voters.add(request.user)
-            project.save()
+            # project.voters.add(request.user.id)
+            # project.save()
             return HttpResponseRedirect(reverse('project', args =[int(project.id)]))
     else:
         form = RateProjectForm()
