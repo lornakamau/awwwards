@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'awardsApp.apps.AwardsappConfig',
     'bootstrap3',
     'cloudinary',
+    'rest_framework',
 ]
 
 cloudinary.config(
