@@ -170,6 +170,7 @@ label>span {
     padding-left: 5%;
     padding-right: 5%;
     display: flex;
+    flex-wrap: wrap;
 }
 a {
     text-decoration: none;
